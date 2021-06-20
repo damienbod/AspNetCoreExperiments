@@ -1,6 +1,6 @@
 # ASP.NET Core 6 
 
-[![.NET](https://github.com/damienbod/AspNetCore6Experiments/workflows/.NET/badge.svg)](https://github.com/damienbod/AspNetCore6Experiments/actions?query=workflow%3A.NET) 
+[![.NET](https://github.com/damienbod/AspNetCore6Experiments/workflows/.NET/badge.svg)](https://github.com/damienbod/AspNetCore6Experiments/actions?query=workflow%3A.NET) [![CodeQL](https://github.com/damienbod/AspNetCore6Experiments/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/damienbod/AspNetCore6Experiments/actions/workflows/codeql-analysis.yml)
 
 ## Blazor .NET 6 BFF  (BlazorHosted.Server)
 
