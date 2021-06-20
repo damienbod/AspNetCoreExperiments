@@ -7,8 +7,19 @@
 
     <div class="main">
         <div class="top-row px-4 auth">
-            <LoginDisplay />
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+            <AuthorizeView>
+                <Authorized>
+                    <strong>Hello, @context.User.Identity.Name!</strong>
+                    <form method="post" action="api/Account/Logout">
+                        <AntiForgeryTokenInput/>
+                        <button class="btn btn-link" type="submit">Sign out</button>
+                    </form>
+                </Authorized>
+                <NotAuthorized>
+                    <a href="Account/Login">Log in</a>
+                </NotAuthorized>
+            </AuthorizeView>
+
         </div>
 
         <div class="content px-4">

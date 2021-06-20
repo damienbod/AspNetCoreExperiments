@@ -1,12 +1,11 @@
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+﻿using BlazorHosted.Client.Services;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace BlazorHosted.Client
@@ -16,21 +15,29 @@ namespace BlazorHosted.Client
         public static async Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
+            builder.Services.AddOptions();
+            builder.Services.AddAuthorizationCore();
+            builder.Services.TryAddSingleton<AuthenticationStateProvider, HostAuthenticationStateProvider>();
+            builder.Services.TryAddSingleton(sp => (HostAuthenticationStateProvider)sp.GetRequiredService<AuthenticationStateProvider>());
+            builder.Services.AddTransient<AuthorizedHandler>();
+
             builder.RootComponents.Add<App>("#app");
 
-            builder.Services.AddHttpClient("BlazorHosted.ServerAPI", client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
-                .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
-
-            // Supply HttpClient instances that include access tokens when making requests to the server project
-            builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("BlazorHosted.ServerAPI"));
-
-            builder.Services.AddMsalAuthentication(options =>
+            builder.Services.AddHttpClient("default", client =>
             {
-                builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
-                options.ProviderOptions.DefaultAccessTokenScopes.Add("api://api.id.uri/access_as_user");
+                client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
             });
 
-            await builder.Build().RunAsync();
+            builder.Services.AddHttpClient("authorizedClient", client =>
+            {
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            }).AddHttpMessageHandler<AuthorizedHandler>();
+
+            builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("default"));
+
+            await builder.Build().RunAsync().ConfigureAwait(false);
         }
     }
 }
