@@ -32,7 +32,7 @@ namespace AspNetCoreRazorMultiClients
             services.AddAuthentication("t1")
                .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAdT1"), "t1", "cookiet1");
 
-            services.AddAuthentication("t2")
+            services.AddAuthentication()
                 .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAdT2"), "t2", "cookiet2");
 
             services.AddAuthorization(options =>

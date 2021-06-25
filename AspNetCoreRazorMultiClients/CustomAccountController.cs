@@ -57,34 +57,34 @@ namespace AspNetCoreRazorMultiClients
             return Challenge(new AuthenticationProperties { RedirectUri = redirect }, scheme);
         }
 
-        [HttpGet("Challenge/{scheme?}")]
-        public IActionResult Challenge(
-            string redirectUri,
-            string scope,
-            string loginHint,
-            string domainHint,
-            string claims,
-            string policy,
-            [FromRoute] string scheme)
-        {
-            scheme ??= OpenIdConnectDefaults.AuthenticationScheme;
-            Dictionary<string, string?> items = new Dictionary<string, string?>
-                {
-                    { Constants.Claims, claims },
-                    { Constants.Policy, policy },
-                };
-            Dictionary<string, object?> parameters = new Dictionary<string, object?>
-                {
-                    { Constants.LoginHint, loginHint },
-                    { Constants.DomainHint, domainHint },
-                };
+        //[HttpGet("Challenge/{scheme?}")]
+        //public IActionResult Challenge(
+        //    string redirectUri,
+        //    string scope,
+        //    string loginHint,
+        //    string domainHint,
+        //    string claims,
+        //    string policy,
+        //    [FromRoute] string scheme)
+        //{
+        //    scheme ??= OpenIdConnectDefaults.AuthenticationScheme;
+        //    Dictionary<string, string?> items = new Dictionary<string, string?>
+        //        {
+        //            { Constants.Claims, claims },
+        //            { Constants.Policy, policy },
+        //        };
+        //    Dictionary<string, object?> parameters = new Dictionary<string, object?>
+        //        {
+        //            { Constants.LoginHint, loginHint },
+        //            { Constants.DomainHint, domainHint },
+        //        };
 
-            OAuthChallengeProperties oAuthChallengeProperties = new OAuthChallengeProperties(items, parameters);
-            oAuthChallengeProperties.Scope = scope?.Split(" ");
-            oAuthChallengeProperties.RedirectUri = redirectUri;
+        //    OAuthChallengeProperties oAuthChallengeProperties = new OAuthChallengeProperties(items, parameters);
+        //    oAuthChallengeProperties.Scope = scope?.Split(" ");
+        //    oAuthChallengeProperties.RedirectUri = redirectUri;
 
-            return Challenge(oAuthChallengeProperties, scheme);
-        }
+        //    return Challenge(oAuthChallengeProperties, scheme);
+        //}
 
         [HttpGet("SignOutT1")]
         public async Task<IActionResult> SignOutT1Async()
