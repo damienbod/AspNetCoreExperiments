@@ -9,3 +9,8 @@ Using the Backend for frontend to secure using Azure AD
 ## ASP.NET Core 6 Razor
 
 Razor page application secured using Azure AD
+
+
+## Links
+
+https://github.com/AzureAD/microsoft-identity-web/wiki/multiple-authentication-schemes
