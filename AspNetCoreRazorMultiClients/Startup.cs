@@ -30,15 +30,15 @@ namespace AspNetCoreRazorMultiClients
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAuthentication("t1")
-               .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAd"), "t1", "cookiet1");
+               .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAdT1"), "t1", "cookiet1");
 
             services.AddAuthentication()
-                .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAd"), "t2", "cookiet2");
+                .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAdT2"), "t2", "cookiet2");
 
             services.AddAuthorization(options =>
             {
                 // By default, all incoming requests will be authorized according to the default policy
-                options.FallbackPolicy = options.DefaultPolicy;
+                //options.FallbackPolicy = options.DefaultPolicy;
             });
             services.AddRazorPages()
                 .AddMvcOptions(options => { })

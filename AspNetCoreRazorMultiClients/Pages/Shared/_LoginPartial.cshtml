@@ -6,13 +6,21 @@
             <span class="navbar-text text-dark">Hello @User.Identity.Name!</span>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignOut">Sign out</a>
+            <a class="nav-link text-dark" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignOut/t1">Sign out t1</a>
+        </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignOut/t2">Sign out t2</a>
         </li>
 }
 else
 {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn/t1">Sign in</a>
+            <a class="nav-link text-dark" 
+            href="MicrosoftIdentity/Account/SignIn/t1?redirectUri=https://localhost:44348/signin-oidc/t1">Sign in t1</a>
+        </li>
+        <li class="nav-item">
+             <a class="nav-link text-dark" 
+            href="MicrosoftIdentity/Account/SignIn/t2?redirectUri=https://localhost:44348/signin-oidc/t2">Sign in t2</a>
         </li>
 }
 </ul>
