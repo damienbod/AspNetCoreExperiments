@@ -32,6 +32,16 @@ namespace AspNetCoreRazorMultiClients
             services.AddAuthentication()
                .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAdT1"), "t1", "cookiet1");
 
+            services.Configure<OpenIdConnectOptions>("t1", options =>
+            {
+                var existingOnTokenValidatedHandler = options.Events.OnTokenValidated;
+                options.Events.OnTokenValidated = async context =>
+                {
+                    await existingOnTokenValidatedHandler(context);
+                    
+                };
+            });
+
             services.AddAuthentication()
                 .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAdT2"), "t2", "cookiet2");
 
