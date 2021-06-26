@@ -67,18 +67,25 @@ namespace AspNetCoreRazorMultiClients
             var aud = HttpContext.User.FindFirst("aud");
             if(aud.Value == _configuration["AzureAdT1:ClientId"])
             {
-                await HttpContext.SignOutAsync("t1");
+                
                 await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
                 await HttpContext.SignOutAsync("cookiet1");
+                var authSignOut = new AuthenticationProperties
+                {
+                    RedirectUri = "https://localhost:44348/signout-callback-oidc"
+                };
+                return SignOut(authSignOut, "t1");
             }
             else
             {
                 await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
                 await HttpContext.SignOutAsync("cookiet2");
-                await HttpContext.SignOutAsync("t2");
+                var authSignOut = new AuthenticationProperties
+                {
+                    RedirectUri = "https://localhost:44348/signout-callback-oidc"
+                };
+                return SignOut(authSignOut, "t2");
             }
-
-            return Redirect("/");
         }
     }
 }
