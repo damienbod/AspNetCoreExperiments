@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.Identity.Web;
 
@@ -17,10 +18,13 @@ namespace AspNetCoreRazorMultiClients
     public class CustomAccountController : Controller
     {
         private readonly IOptionsMonitor<MicrosoftIdentityOptions> _optionsMonitor;
+        private readonly IConfiguration _configuration;
 
-        public CustomAccountController(IOptionsMonitor<MicrosoftIdentityOptions> microsoftIdentityOptionsMonitor)
+        public CustomAccountController(IOptionsMonitor<MicrosoftIdentityOptions> microsoftIdentityOptionsMonitor,
+            IConfiguration  configuration)
         {
             _optionsMonitor = microsoftIdentityOptionsMonitor;
+            _configuration = configuration;
         }
 
         [HttpGet("SignInT1")]
@@ -57,22 +61,23 @@ namespace AspNetCoreRazorMultiClients
             return Challenge(new AuthenticationProperties { RedirectUri = redirect }, scheme);
         }
 
-        [HttpGet("SignOutT1")]
-        public async Task<IActionResult> SignOutT1Async()
+        [HttpGet("CustomSignOut")]
+        public async Task<IActionResult> CustomSignOut()
         {
-            await HttpContext.SignOutAsync("t1");
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            await HttpContext.SignOutAsync("cookiet1");
-            
-            return Redirect("/");
-        }
+            var aud = HttpContext.User.FindFirst("aud");
+            if(aud.Value == _configuration["AzureAdT1:ClientId"])
+            {
+                await HttpContext.SignOutAsync("t1");
+                await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+                await HttpContext.SignOutAsync("cookiet1");
+            }
+            else
+            {
+                await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+                await HttpContext.SignOutAsync("cookiet2");
+                await HttpContext.SignOutAsync("t2");
+            }
 
-        [HttpGet("SignOutT2")]
-        public async Task<IActionResult> SignOutT2Async()
-        {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            await HttpContext.SignOutAsync("cookiet2");
-            await HttpContext.SignOutAsync("t2");
             return Redirect("/");
         }
     }
