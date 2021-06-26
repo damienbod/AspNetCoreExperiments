@@ -72,7 +72,7 @@ namespace AspNetCoreRazorMultiClients
                 await HttpContext.SignOutAsync("cookiet1");
                 var authSignOut = new AuthenticationProperties
                 {
-                    RedirectUri = "https://localhost:44348/signout-callback-oidc"
+                    RedirectUri = "https://localhost:44348/SignoutCallbackOidc"
                 };
                 return SignOut(authSignOut, "t1");
             }
@@ -82,7 +82,7 @@ namespace AspNetCoreRazorMultiClients
                 await HttpContext.SignOutAsync("cookiet2");
                 var authSignOut = new AuthenticationProperties
                 {
-                    RedirectUri = "https://localhost:44348/signout-callback-oidc"
+                    RedirectUri = "https://localhost:44348/SignoutCallbackOidc"
                 };
                 return SignOut(authSignOut, "t2");
             }
