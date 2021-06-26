@@ -60,9 +60,10 @@ namespace AspNetCoreRazorMultiClients
         [HttpGet("SignOutT1")]
         public async Task<IActionResult> SignOutT1Async()
         {
+            await HttpContext.SignOutAsync("t1");
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignOutAsync("cookiet1");
-            await HttpContext.SignOutAsync("t1");
+            
             return Redirect("/");
         }
 
