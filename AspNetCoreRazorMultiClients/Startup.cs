@@ -29,7 +29,7 @@ namespace AspNetCoreRazorMultiClients
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication("t1")
+            services.AddAuthentication()
                .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAdT1"), "t1", "cookiet1");
 
             services.AddAuthentication()
