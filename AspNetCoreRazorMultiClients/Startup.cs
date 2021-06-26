@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -13,6 +14,7 @@ using Microsoft.Identity.Web.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace AspNetCoreRazorMultiClients
@@ -29,6 +31,9 @@ namespace AspNetCoreRazorMultiClients
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie();
+
             services.AddAuthentication()
                .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAdT1"), "t1", "cookiet1");
 
@@ -38,12 +43,27 @@ namespace AspNetCoreRazorMultiClients
                 options.Events.OnTokenValidated = async context =>
                 {
                     await existingOnTokenValidatedHandler(context);
-                    
+
+                    await context.HttpContext.SignInAsync(
+                        CookieAuthenticationDefaults.AuthenticationScheme, context.Principal);
+
                 };
             });
 
             services.AddAuthentication()
                 .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAdT2"), "t2", "cookiet2");
+
+            services.Configure<OpenIdConnectOptions>("t2", options =>
+            {
+                var existingOnTokenValidatedHandler = options.Events.OnTokenValidated;
+                options.Events.OnTokenValidated = async context =>
+                {
+                    await existingOnTokenValidatedHandler(context);
+
+                    await context.HttpContext.SignInAsync(
+                       CookieAuthenticationDefaults.AuthenticationScheme, context.Principal);
+                };
+            });
 
             services.AddAuthorization(options =>
             {

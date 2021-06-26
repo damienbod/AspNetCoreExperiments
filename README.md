@@ -14,3 +14,5 @@ Razor page application secured using Azure AD
 ## Links
 
 https://github.com/AzureAD/microsoft-identity-web/wiki/multiple-authentication-schemes
+
+https://github.com/AzureAD/microsoft-identity-web/wiki/customization#openidconnectoptions
