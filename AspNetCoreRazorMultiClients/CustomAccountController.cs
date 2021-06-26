@@ -57,40 +57,12 @@ namespace AspNetCoreRazorMultiClients
             return Challenge(new AuthenticationProperties { RedirectUri = redirect }, scheme);
         }
 
-        //[HttpGet("Challenge/{scheme?}")]
-        //public IActionResult Challenge(
-        //    string redirectUri,
-        //    string scope,
-        //    string loginHint,
-        //    string domainHint,
-        //    string claims,
-        //    string policy,
-        //    [FromRoute] string scheme)
-        //{
-        //    scheme ??= OpenIdConnectDefaults.AuthenticationScheme;
-        //    Dictionary<string, string?> items = new Dictionary<string, string?>
-        //        {
-        //            { Constants.Claims, claims },
-        //            { Constants.Policy, policy },
-        //        };
-        //    Dictionary<string, object?> parameters = new Dictionary<string, object?>
-        //        {
-        //            { Constants.LoginHint, loginHint },
-        //            { Constants.DomainHint, domainHint },
-        //        };
-
-        //    OAuthChallengeProperties oAuthChallengeProperties = new OAuthChallengeProperties(items, parameters);
-        //    oAuthChallengeProperties.Scope = scope?.Split(" ");
-        //    oAuthChallengeProperties.RedirectUri = redirectUri;
-
-        //    return Challenge(oAuthChallengeProperties, scheme);
-        //}
-
         [HttpGet("SignOutT1")]
         public async Task<IActionResult> SignOutT1Async()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignOutAsync("cookiet1");
+            await HttpContext.SignOutAsync("t1");
             return Redirect("/");
         }
 
@@ -99,6 +71,7 @@ namespace AspNetCoreRazorMultiClients
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignOutAsync("cookiet2");
+            await HttpContext.SignOutAsync("t2");
             return Redirect("/");
         }
     }
