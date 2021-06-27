@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
-using Microsoft.Identity.Web;
 
 namespace AspNetCoreRazorMultiClients
 {
@@ -13,13 +11,10 @@ namespace AspNetCoreRazorMultiClients
     [Route("[controller]")]
     public class CustomAccountController : Controller
     {
-        private readonly IOptionsMonitor<MicrosoftIdentityOptions> _optionsMonitor;
         private readonly IConfiguration _configuration;
 
-        public CustomAccountController(IOptionsMonitor<MicrosoftIdentityOptions> microsoftIdentityOptionsMonitor,
-            IConfiguration  configuration)
+        public CustomAccountController(IConfiguration  configuration)
         {
-            _optionsMonitor = microsoftIdentityOptionsMonitor;
             _configuration = configuration;
         }
 
