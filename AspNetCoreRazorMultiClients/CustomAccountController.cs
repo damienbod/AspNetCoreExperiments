@@ -13,7 +13,7 @@ namespace AspNetCoreRazorMultiClients
     {
         private readonly IConfiguration _configuration;
 
-        public CustomAccountController(IConfiguration  configuration)
+        public CustomAccountController(IConfiguration configuration)
         {
             _configuration = configuration;
         }
@@ -56,9 +56,9 @@ namespace AspNetCoreRazorMultiClients
         public async Task<IActionResult> CustomSignOut()
         {
             var aud = HttpContext.User.FindFirst("aud");
-            if(aud.Value == _configuration["AzureAdT1:ClientId"])
+            if (aud.Value == _configuration["AzureAdT1:ClientId"])
             {
-                
+
                 await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
                 await HttpContext.SignOutAsync("cookiet1");
                 var authSignOut = new AuthenticationProperties
