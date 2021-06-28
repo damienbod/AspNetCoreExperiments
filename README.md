@@ -14,6 +14,8 @@ Razor page application secured using Azure AD
 
 Sign-in using multiple clients or tenants in ASP.NET Core and Azure AD
 
+https://damienbod.com/2021/06/28/sign-in-using-multiple-clients-or-tenants-in-asp-net-core-and-azure-ad/
+
 ## Links
 
 https://github.com/AzureAD/microsoft-identity-web/wiki/multiple-authentication-schemes
