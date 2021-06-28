@@ -6,6 +6,20 @@
 
 Using the Backend for frontend pattern to secure application using Azure AD
 
-## ASP.NET Core 6 Razor
+## ASP.NET Core 6 Razor (AspNetCoreRazor)
 
 Razor page application secured using Azure AD
+
+## ASP.NET Core 6 Razor mutliple tenants (AspNetCoreRazorMultiClients)
+
+Sign-in using multiple clients or tenants in ASP.NET Core and Azure AD
+
+## Links
+
+https://github.com/AzureAD/microsoft-identity-web/wiki/multiple-authentication-schemes
+
+https://github.com/AzureAD/microsoft-identity-web/wiki/customization#openidconnectoptions
+
+https://github.com/AzureAD/microsoft-identity-web
+
+https://docs.microsoft.com/en-us/aspnet/core/security/authentication
