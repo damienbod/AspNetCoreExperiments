@@ -12,9 +12,11 @@ Razor page application secured using Azure AD
 
 ## ASP.NET Core 6 Razor mutliple tenants (AspNetCoreRazorMultiClients)
 
-Sign-in using multiple clients or tenants in ASP.NET Core and Azure AD
+[Sign-in using multiple clients or tenants in ASP.NET Core and Azure AD](https://damienbod.com/2021/06/28/sign-in-using-multiple-clients-or-tenants-in-asp-net-core-and-azure-ad/)
 
-https://damienbod.com/2021/06/28/sign-in-using-multiple-clients-or-tenants-in-asp-net-core-and-azure-ad/
+## History 
+
+2021-08-09 Updated nuget packages
 
 ## Links
 
