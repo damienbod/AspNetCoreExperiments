@@ -38,7 +38,6 @@ namespace AspNetCoreRazorMultiClients
 
                     await context.HttpContext.SignInAsync(
                         CookieAuthenticationDefaults.AuthenticationScheme, context.Principal);
-
                 };
             });
 
