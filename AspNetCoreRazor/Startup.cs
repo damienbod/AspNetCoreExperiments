@@ -77,19 +77,28 @@ namespace AspNetCoreRazor
                 })
                 .AddContentSecurityPolicy(builder =>
                 {
-                    builder.AddObjectSrc().None();
+                    builder.AddObjectSrc()
+                        .None();
                     builder.AddBlockAllMixedContent();
+
                     builder.AddImgSrc()
                         .Self()
                         .From("data:");
 
                     builder.AddFormAction().Self();
-                    builder.AddFontSrc().Self();
-                    builder.AddStyleSrc()
-                        .Self()
-                        .UnsafeInline();
 
-                    builder.AddScriptSrc().Self();
+                    builder.AddFontSrc().Self();
+
+                    builder.AddStyleSrc()
+                        .Self();
+                        // .UnsafeInline();
+
+                    builder.AddBaseUri().Self();
+
+                    builder.AddScriptSrc()
+                        .Self()
+                        .UnsafeInline()
+                        .WithNonce();
 
                     builder.AddCustomDirective("require-trusted-types-for", "'script'");
                     builder.AddFrameAncestors().None();
