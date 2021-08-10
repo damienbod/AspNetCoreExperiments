@@ -81,59 +81,60 @@ namespace AspNetCoreRazor
                     builder.AddFormAction().Self();
                     builder.AddFrameAncestors().None();
                 })
-                .AddFeaturePolicy(builder =>
-                 {
-                     builder.AddAccelerometer() // accelerometer 'self' http://testUrl.com
-                         .None();
+                .RemoveServerHeader()
+                .AddPermissionsPolicy(builder =>
+                {
+                    builder.AddAccelerometer()
+                        .None();
 
-                     builder.AddAmbientLightSensor() // ambient-light-sensor 'self' http://testUrl.com
-                         .None();
+                    builder.AddAmbientLightSensor() // ambient-light-sensor 'self' http://testUrl.com
+                        .None();
 
-                     builder.AddAutoplay() // autoplay 'self'
-                         .None();
+                    builder.AddAutoplay() // autoplay 'self'
+                        .None();
 
-                     builder.AddCamera() // camera 'none'
-                         .None();
+                    builder.AddCamera() // camera 'none'
+                        .None();
 
-                     builder.AddEncryptedMedia() // encrypted-media 'self'
-                         .None();
+                    builder.AddEncryptedMedia() // encrypted-media 'self'
+                        .None();
 
-                     builder.AddFullscreen() // fullscreen *:
-                         .All();
+                    builder.AddFullscreen() // fullscreen *:
+                        .All();
 
-                     builder.AddGeolocation() // geolocation 'none'
-                         .None();
+                    builder.AddGeolocation() // geolocation 'none'
+                        .None();
 
-                     builder.AddGyroscope() // gyroscope 'none'
-                         .None();
+                    builder.AddGyroscope() // gyroscope 'none'
+                        .None();
 
-                     builder.AddMagnetometer() // magnetometer 'none'
-                         .None();
+                    builder.AddMagnetometer() // magnetometer 'none'
+                        .None();
 
-                     builder.AddMicrophone() // microphone 'none'
-                         .None();
+                    builder.AddMicrophone() // microphone 'none'
+                        .None();
 
-                     builder.AddMidi() // midi 'none'
-                         .None();
+                    builder.AddMidi() // midi 'none'
+                        .None();
 
-                     builder.AddPayment() // payment 'none'
-                         .None();
+                    builder.AddPayment() // payment 'none'
+                        .None();
 
-                     builder.AddPictureInPicture() // picture-in-picture 'none'
-                         .None();
+                    builder.AddPictureInPicture() // picture-in-picture 'none'
+                        .None();
 
-                     builder.AddSpeaker() // speaker 'none'
-                         .None();
+                    builder.AddSpeaker() // speaker 'none'
+                        .None();
 
-                     builder.AddSyncXHR() // sync-xhr 'none'
-                         .None();
+                    builder.AddSyncXHR() // sync-xhr 'none'
+                        .None();
 
-                     builder.AddUsb() // usb 'none'
-                         .None();
+                    builder.AddUsb() // usb 'none'
+                        .None();
 
-                     builder.AddVR() // vr 'none'
-                         .None();
-                 });
+                    builder.AddVR() // vr 'none'
+                        .None();
+                });
 
             app.UseSecurityHeaders(policyCollection);
 
