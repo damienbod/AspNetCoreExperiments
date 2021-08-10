@@ -78,7 +78,18 @@ namespace AspNetCoreRazor
                 .AddContentSecurityPolicy(builder =>
                 {
                     builder.AddObjectSrc().None();
+                    builder.AddBlockAllMixedContent();
+                    builder.AddImgSrc()
+                        .Self()
+                        .From("data:");
+
                     builder.AddFormAction().Self();
+                    builder.AddFontSrc().Self();
+                    builder.AddStyleSrc()
+                        .Self()
+                        .UnsafeInline();
+
+                    builder.AddScriptSrc().Self();
                     builder.AddFrameAncestors().None();
                 })
                 .RemoveServerHeader()
