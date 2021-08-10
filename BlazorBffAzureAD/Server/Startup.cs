@@ -66,7 +66,6 @@ namespace BlazorHosted.Server
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -75,8 +74,10 @@ namespace BlazorHosted.Server
             else
             {
                 app.UseExceptionHandler("/Error");
-                app.UseHsts();
             }
+
+            app.UseSecurityHeaders(
+                SecurityHeadersDefinitions.GetHeaderPolicyCollection(env.IsDevelopment()));
 
             app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();

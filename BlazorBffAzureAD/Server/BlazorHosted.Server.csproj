@@ -23,6 +23,7 @@
     <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.15.2" />
     <PackageReference Include="IdentityModel" Version="5.1.0" />
     <PackageReference Include="IdentityModel.AspNetCore" Version="3.0.0" />
+    <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders" Version="0.16.0" />
   </ItemGroup>
 
 </Project>
