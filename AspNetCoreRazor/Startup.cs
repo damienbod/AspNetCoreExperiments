@@ -90,6 +90,8 @@ namespace AspNetCoreRazor
                         .UnsafeInline();
 
                     builder.AddScriptSrc().Self();
+
+                    builder.AddCustomDirective("require-trusted-types-for", "'script'");
                     builder.AddFrameAncestors().None();
                 })
                 .RemoveServerHeader()
