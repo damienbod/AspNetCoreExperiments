@@ -96,20 +96,17 @@ namespace AspNetCoreRazor
                     builder.AddBaseUri().Self();
 
                     builder.AddScriptSrc()
-                        .Self()
+                        //.Self()
                         .UnsafeInline()
                         .WithNonce();
 
-                    builder.AddCustomDirective("require-trusted-types-for", "'script'");
+                    // builder.AddCustomDirective("require-trusted-types-for", "'script'");
                     builder.AddFrameAncestors().None();
                 })
                 .RemoveServerHeader()
                 .AddPermissionsPolicy(builder =>
                 {
                     builder.AddAccelerometer()
-                        .None();
-
-                    builder.AddAmbientLightSensor() // ambient-light-sensor 'self' http://testUrl.com
                         .None();
 
                     builder.AddAutoplay() // autoplay 'self'
@@ -145,16 +142,10 @@ namespace AspNetCoreRazor
                     builder.AddPictureInPicture() // picture-in-picture 'none'
                         .None();
 
-                    builder.AddSpeaker() // speaker 'none'
-                        .None();
-
                     builder.AddSyncXHR() // sync-xhr 'none'
                         .None();
 
                     builder.AddUsb() // usb 'none'
-                        .None();
-
-                    builder.AddVR() // vr 'none'
                         .None();
                 });
 

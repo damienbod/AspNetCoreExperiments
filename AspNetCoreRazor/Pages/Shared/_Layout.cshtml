@@ -42,9 +42,10 @@
         </div>
     </footer>
 
-    <script src="~/lib/jquery/dist/jquery.min.js" asp-add-nonce></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" asp-add-nonce></script>
-    <script src="~/js/site.js" asp-append-version="true" asp-add-nonce></script>
+    @{var nonce = this.Context.GetNonce();}
+    <script src="~/lib/jquery/dist/jquery.min.js" nonce="@nonce"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" nonce="@nonce"></script>
+    <script src="~/js/site.js" asp-append-version="true" nonce="@nonce"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
