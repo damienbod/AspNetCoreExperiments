@@ -46,7 +46,8 @@ namespace BlazorHosted.Server
 
                     builder.AddFrameAncestors().None();
 
-                    builder.AddScriptSrc()
+                    // due to Blazor
+                    builder.AddScriptSrc() 
                         .Self()
                         .UnsafeInline()
                         .UnsafeEval();
