@@ -98,10 +98,10 @@ namespace AspNetCoreRazor
                         .None();
                 });
 
-            if(!isDev)
+            if (!isDev)
             {
                 // maxage = one year in seconds
-                policy.AddStrictTransportSecurityMaxAgeIncludeSubDomains(maxAgeInSeconds: 60 * 60 * 24 * 365); 
+                policy.AddStrictTransportSecurityMaxAgeIncludeSubDomains(maxAgeInSeconds: 60 * 60 * 24 * 365);
             }
 
             return policy;
