@@ -10,11 +10,15 @@ Using the Backend for frontend pattern to secure application using Azure AD
 
 Razor page application secured using Azure AD
 
+[Improving application security in an ASP.NET Core Razor Page using HTTP headers](https://damienbod.com/)
+
 ## ASP.NET Core 6 Razor mutliple tenants (AspNetCoreRazorMultiClients)
 
 [Sign-in using multiple clients or tenants in ASP.NET Core and Azure AD](https://damienbod.com/2021/06/28/sign-in-using-multiple-clients-or-tenants-in-asp-net-core-and-azure-ad/)
 
 ## History 
+
+2021-08-13 Added security headers
 
 2021-08-09 Updated nuget packages
 
