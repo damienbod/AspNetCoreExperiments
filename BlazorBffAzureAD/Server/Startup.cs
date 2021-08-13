@@ -56,10 +56,10 @@ namespace BlazorHosted.Server
 
             services.AddRazorPages().AddMvcOptions(options =>
             {
-                var policy = new AuthorizationPolicyBuilder()
-                    .RequireAuthenticatedUser()
-                    .Build();
-                options.Filters.Add(new AuthorizeFilter(policy));
+                //var policy = new AuthorizationPolicyBuilder()
+                //    .RequireAuthenticatedUser()
+                //    .Build();
+                //options.Filters.Add(new AuthorizeFilter(policy));
             }).AddMicrosoftIdentityUI();
         }
 
