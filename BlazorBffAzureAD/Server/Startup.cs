@@ -62,7 +62,8 @@ namespace BlazorHosted.Server
             }
 
             app.UseSecurityHeaders(
-                SecurityHeadersDefinitions.GetHeaderPolicyCollection(env.IsDevelopment()));
+                SecurityHeadersDefinitions.GetHeaderPolicyCollection(env.IsDevelopment(),
+                    Configuration["AzureAd:Instance"]));
 
             app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();

@@ -4,7 +4,7 @@ namespace BlazorHosted.Server
 {
     public static class SecurityHeadersDefinitions
     {
-        public static HeaderPolicyCollection GetHeaderPolicyCollection(bool isDev)
+        public static HeaderPolicyCollection GetHeaderPolicyCollection(bool isDev, string idpHost)
         {
             var policy = new HeaderPolicyCollection()
                 .AddFrameOptionsDeny()
@@ -29,7 +29,7 @@ namespace BlazorHosted.Server
                     builder.AddObjectSrc().None();
                     builder.AddBlockAllMixedContent();
                     builder.AddImgSrc().Self().From("data:");
-                    builder.AddFormAction().Self();
+                    builder.AddFormAction().Self().From(idpHost);
                     builder.AddFontSrc().Self();
                     builder.AddStyleSrc().Self().UnsafeInline();
                     builder.AddBaseUri().Self();
