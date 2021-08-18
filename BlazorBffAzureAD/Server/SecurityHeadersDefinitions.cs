@@ -37,12 +37,13 @@ namespace BlazorHosted.Server
 
                     // due to Blazor
                     builder.AddScriptSrc().Self().UnsafeInline().UnsafeEval();
+
                 })
                 .RemoveServerHeader()
                 .AddPermissionsPolicy(builder =>
                 {
                     builder.AddAccelerometer().None();
-                    builder.AddAutoplay().None(); 
+                    builder.AddAutoplay().None();
                     builder.AddCamera().None();
                     builder.AddEncryptedMedia().None();
                     builder.AddFullscreen().All();
