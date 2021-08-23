@@ -6,6 +6,8 @@
 
 Using the Backend for frontend pattern to secure application using Azure AD
 
+[Improving application security in Blazor using HTTP headers](https://damienbod.com/2021/08/23/improving-application-security-in-blazor-using-http-headers-part-2/)
+
 ## ASP.NET Core 6 Razor (AspNetCoreRazor)
 
 Razor page application secured using Azure AD
