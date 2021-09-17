@@ -1,4 +1,4 @@
-﻿namespace BlazorHosted.Shared.Authorization
+﻿namespace BlazorBffAzureADWithApi.Shared.Authorization
 {
     public class ClaimValue
     {

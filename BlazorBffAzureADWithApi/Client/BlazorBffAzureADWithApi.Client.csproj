@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Shared\BlazorHosted.Shared.csproj" />
+    <ProjectReference Include="..\Shared\BlazorBffAzureADWithApi.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
