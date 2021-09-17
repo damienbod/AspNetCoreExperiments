@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <ProjectGuid>BD4BD465-71CA-4729-B416-877E627206D8</ProjectGuid>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <UserSecretsId>1579346f-16df-4b37-a087-39df6bf2ffae</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.0-rc.1.21452.15" />
     <PackageReference Include="Microsoft.Identity.Web" Version="1.16.1" />
-    <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.12.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.16.1" />
   </ItemGroup>
 
 </Project>
