@@ -56,8 +56,8 @@ namespace BlazorBffAzureADWithApi.Server
                     "User.ReadBasic.All user.read")
                .AddInMemoryTokenCaches();
 
-            services.AddAuthentication("MyJwtApischeme")
-                .AddMicrosoftIdentityWebApi(Configuration, "AzureAdMyApi", "MyJwtApischeme");
+            services.AddAuthentication("MyJwtApiScheme")
+                .AddMicrosoftIdentityWebApi(Configuration, "AzureAdMyApi", "MyJwtApiScheme");
 
             services.AddControllersWithViews(options =>
                 options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));

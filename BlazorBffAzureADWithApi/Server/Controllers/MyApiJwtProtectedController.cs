@@ -7,7 +7,7 @@ namespace BlazorBffAzureADWithApi.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = "MyJwtApischeme")]
+    [Authorize(AuthenticationSchemes = "MyJwtApiScheme")]
     [Produces("application/json")]
     [SwaggerTag("Using to provide a public api for different clients")]
     public class MyApiJwtProtectedController : ControllerBase
