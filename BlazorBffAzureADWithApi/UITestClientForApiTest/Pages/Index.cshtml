@@ -1,0 +1,15 @@
+﻿@page
+@model UITestClientForApiTest.Pages.CallApiModel
+@{
+    ViewData["Title"] = "MyApi";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Access Token</h1>
+
+<div class="row">
+    <div class="col-12">@Model.AccessToken</div>
+</div>
+
+<pre>@Model.DataFromApi</pre>
+

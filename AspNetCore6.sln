@@ -30,6 +30,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorBffAzureADWithApi.Cli
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlazorBffAzureAD", "BlazorBffAzureAD", "{C9D46001-4199-4CE8-A8FB-54557130D28E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UITestClientForApiTest", "BlazorBffAzureADWithApi\UITestClientForApiTest\UITestClientForApiTest.csproj", "{BD4BD465-71CA-4729-B416-877E627206D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +70,10 @@ Global
 		{02B670D4-C9A6-456B-B56E-8EAF8002260A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02B670D4-C9A6-456B-B56E-8EAF8002260A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02B670D4-C9A6-456B-B56E-8EAF8002260A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD4BD465-71CA-4729-B416-877E627206D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD4BD465-71CA-4729-B416-877E627206D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD4BD465-71CA-4729-B416-877E627206D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD4BD465-71CA-4729-B416-877E627206D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,6 +85,7 @@ Global
 		{0BE784AF-63C5-4E16-858C-1AA9A323A13E} = {0437CAB7-043D-4FB6-8A95-C970CE85E58D}
 		{173CD659-BEEB-4189-96ED-EEB14E8E17B6} = {0437CAB7-043D-4FB6-8A95-C970CE85E58D}
 		{02B670D4-C9A6-456B-B56E-8EAF8002260A} = {0437CAB7-043D-4FB6-8A95-C970CE85E58D}
+		{BD4BD465-71CA-4729-B416-877E627206D8} = {0437CAB7-043D-4FB6-8A95-C970CE85E58D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C038567F-029F-4613-8ABF-22F4ED48AD78}

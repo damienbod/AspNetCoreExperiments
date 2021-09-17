@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
+using Microsoft.IdentityModel.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
@@ -56,7 +57,7 @@ namespace BlazorBffAzureADWithApi.Server
                .AddInMemoryTokenCaches();
 
             services.AddAuthentication("MyJwtApischeme")
-                .AddMicrosoftIdentityWebApi(Configuration, "AzureAd", "MyJwtApischeme");
+                .AddMicrosoftIdentityWebApi(Configuration, "AzureAdMyApi", "MyJwtApischeme");
 
             services.AddControllersWithViews(options =>
                 options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
@@ -105,6 +106,8 @@ namespace BlazorBffAzureADWithApi.Server
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            IdentityModelEventSource.ShowPII = true;
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
