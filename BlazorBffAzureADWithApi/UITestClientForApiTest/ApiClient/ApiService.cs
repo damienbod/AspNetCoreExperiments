@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Identity.Web;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -30,7 +29,7 @@ namespace UITestClientForApiTest
             return accessToken;
         }
 
-        public async Task<JArray> GetApiDataAsync()
+        public async Task<string> GetApiDataAsync()
         {
             var client = _clientFactory.CreateClient();
 
@@ -45,9 +44,7 @@ namespace UITestClientForApiTest
             if (response.IsSuccessStatusCode)
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
-                var data = JArray.Parse(responseContent);
-
-                return data;
+                return responseContent;
             }
 
             throw new HttpRequestException($"Status code: {response.StatusCode}, Error: {response.ReasonPhrase}");
