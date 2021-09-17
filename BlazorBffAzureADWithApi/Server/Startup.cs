@@ -1,5 +1,6 @@
 using BlazorBffAzureADWithApi.Server.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,6 +10,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
+using Microsoft.OpenApi.Models;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace BlazorBffAzureADWithApi.Server
 {
@@ -63,6 +68,39 @@ namespace BlazorBffAzureADWithApi.Server
                 //    .Build();
                 //options.Filters.Add(new AuthorizeFilter(policy));
             }).AddMicrosoftIdentityUI();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.EnableAnnotations();
+
+                // add JWT Authentication
+                var securityScheme = new OpenApiSecurityScheme
+                {
+                    Name = "JWT Authentication",
+                    Description = "Enter JWT Bearer token **_only_**",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer", // must be lower case
+                    BearerFormat = "JWT",
+                    Reference = new OpenApiReference
+                    {
+                        Id = JwtBearerDefaults.AuthenticationScheme,
+                        Type = ReferenceType.SecurityScheme
+                    }
+                };
+                c.AddSecurityDefinition(securityScheme.Reference.Id, securityScheme);
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {securityScheme, Array.Empty<string>() }
+                });
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "My API",
+                    Version = "v1",
+                    Description = "My API"
+                });
+
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -80,6 +118,12 @@ namespace BlazorBffAzureADWithApi.Server
             app.UseSecurityHeaders(
                 SecurityHeadersDefinitions.GetHeaderPolicyCollection(env.IsDevelopment(),
                     Configuration["AzureAd:Instance"]));
+
+            app.UseSwagger(); 
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyApi v1");
+            });
 
             app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();
