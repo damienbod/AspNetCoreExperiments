@@ -8,6 +8,7 @@ using Microsoft.Identity.Web;
 
 namespace BlazorBffAzureADWithApi.Server.Controllers
 {
+    [ApiExplorerSettings(IgnoreApi = true)]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     [AuthorizeForScopes(Scopes = new string[] { "User.ReadBasic.All user.read" })]
     [ApiController]

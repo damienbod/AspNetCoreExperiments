@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorBffAzureADWithApi.Server.Controllers
 {
+    [ApiExplorerSettings(IgnoreApi = true)]
     // orig src https://github.com/berhir/BlazorWebAssemblyCookieAuth
     [Route("api/[controller]")]
     public class AccountController : ControllerBase
