@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <UserSecretsId>BlazorBffAzureAD.Server-394C3C10-DE35-4EAA-BE0A-66A906534BEF</UserSecretsId>
+    <UserSecretsId>BlazorBffAzureADWithApi.Server-394C3C10-DE35-4EAA-BE0A-66A906534BEF</UserSecretsId>
     <WebProject_DirectoryAccessLevelKey>0</WebProject_DirectoryAccessLevelKey>
   </PropertyGroup>
 
@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Client\BlazorBffAzureAD.Client.csproj" />
-    <ProjectReference Include="..\Shared\BlazorBffAzureAD.Shared.csproj" />
+    <ProjectReference Include="..\Client\BlazorBffAzureADWithApi.Client.csproj" />
+    <ProjectReference Include="..\Shared\BlazorBffAzureADWithApi.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

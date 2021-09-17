@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace BlazorBffAzureAD.Server.Services
+namespace BlazorBffAzureADWithApi.Server.Services
 {
     public class GraphApiClientService
     {

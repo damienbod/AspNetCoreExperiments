@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using BlazorBffAzureAD.Shared.Authorization;
+using BlazorBffAzureADWithApi.Shared.Authorization;
 using IdentityModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BlazorBffAzureAD.Server.Controllers
+namespace BlazorBffAzureADWithApi.Server.Controllers
 {
     // orig src https://github.com/berhir/BlazorWebAssemblyCookieAuth
     [Route("api/[controller]")]

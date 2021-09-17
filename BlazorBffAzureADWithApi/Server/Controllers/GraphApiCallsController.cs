@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using BlazorBffAzureAD.Server.Services;
+using BlazorBffAzureADWithApi.Server.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Web;
 
-namespace BlazorBffAzureAD.Server.Controllers
+namespace BlazorBffAzureADWithApi.Server.Controllers
 {
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     [AuthorizeForScopes(Scopes = new string[] { "User.ReadBasic.All user.read" })]
