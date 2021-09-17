@@ -44,7 +44,7 @@ namespace BlazorBffAzureADWithApi.Server
 
             string[] initialScopes = Configuration.GetValue<string>("UserApiOne:ScopeForAccessToken")?.Split(' ');
 
-            services.AddAuthentication(options => 
+            services.AddAuthentication(options =>
             {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
@@ -122,7 +122,7 @@ namespace BlazorBffAzureADWithApi.Server
                 SecurityHeadersDefinitions.GetHeaderPolicyCollection(env.IsDevelopment(),
                     Configuration["AzureAd:Instance"]));
 
-            app.UseSwagger(); 
+            app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyApi v1");
