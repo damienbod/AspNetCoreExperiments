@@ -18,6 +18,10 @@ Razor page application secured using Azure AD
 
 [Sign-in using multiple clients or tenants in ASP.NET Core and Azure AD](https://damienbod.com/2021/06/28/sign-in-using-multiple-clients-or-tenants-in-asp-net-core-and-azure-ad/)
 
+## Blazor .NET 6 BFF WASM & server(BlazorHosted.Server to start) & API secured with JWT
+
+[Implement a secure API and a Blazor app in the same ASP.NET Core project with Azure AD authentication]()
+
 ## History 
 
 2021-09-17 Updated .NET 6 packages added mixed auth Blazor & API example
