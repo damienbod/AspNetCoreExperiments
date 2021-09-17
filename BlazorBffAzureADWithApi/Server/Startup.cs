@@ -1,4 +1,6 @@
 using BlazorBffAzureADWithApi.Server.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -36,11 +38,20 @@ namespace BlazorBffAzureADWithApi.Server
 
             string[] initialScopes = Configuration.GetValue<string>("UserApiOne:ScopeForAccessToken")?.Split(' ');
 
-            services.AddMicrosoftIdentityWebAppAuthentication(Configuration)
-                .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
+            services.AddAuthentication(options => 
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddMicrosoftIdentityWebApp(Configuration, "AzureAd", OpenIdConnectDefaults.AuthenticationScheme)
+               .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
                  .AddMicrosoftGraph("https://graph.microsoft.com/beta",
                     "User.ReadBasic.All user.read")
-                .AddInMemoryTokenCaches();
+               .AddInMemoryTokenCaches();
+
+            services.AddAuthentication("MyJwtApischeme")
+                .AddMicrosoftIdentityWebApi(Configuration, "AzureAd", "MyJwtApischeme");
 
             services.AddControllersWithViews(options =>
                 options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
