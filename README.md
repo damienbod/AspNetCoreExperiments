@@ -20,7 +20,7 @@ Razor page application secured using Azure AD
 
 ## Blazor .NET 6 BFF WASM & server(BlazorHosted.Server to start) & API secured with JWT
 
-[Implement a secure API and a Blazor app in the same ASP.NET Core project with Azure AD authentication]()
+[Implement a secure API and a Blazor app in the same ASP.NET Core project with Azure AD authentication](https://damienbod.com/2021/10/04/implement-a-secure-api-and-a-blazor-app-in-the-same-asp-net-core-project-with-azure-ad-authentication/)
 
 ## History 
 
