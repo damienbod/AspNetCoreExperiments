@@ -24,6 +24,8 @@ Razor page application secured using Azure AD
 
 ## History 
 
+2021-10-29 Updated packages
+
 2021-10-02 Updated packages
 
 2021-09-17 Updated .NET 6 packages added mixed auth Blazor & API example
