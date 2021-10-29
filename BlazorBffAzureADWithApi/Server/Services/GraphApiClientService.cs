@@ -39,6 +39,7 @@ namespace BlazorBffAzureADWithApi.Server.Services
                     .Content
                     .Request()
                     .WithScopes("User.ReadBasic.All", "user.read")
+                    .WithAuthenticationScheme(OpenIdConnectDefaults.AuthenticationScheme)
                     .GetAsync()
                     .ConfigureAwait(false))
                 {
