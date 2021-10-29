@@ -1,4 +1,5 @@
-﻿using Microsoft.Graph;
+﻿using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.Graph;
 using Microsoft.Identity.Web;
 using System;
 using System.IO;
@@ -21,6 +22,7 @@ namespace BlazorBffAzureADWithApi.Server.Services
                 .Me
                 .Request()
                 .WithScopes("User.ReadBasic.All", "user.read")
+                .WithAuthenticationScheme(OpenIdConnectDefaults.AuthenticationScheme)
                 .GetAsync()
                 .ConfigureAwait(false);
         }
@@ -37,6 +39,7 @@ namespace BlazorBffAzureADWithApi.Server.Services
                     .Content
                     .Request()
                     .WithScopes("User.ReadBasic.All", "user.read")
+                    .WithAuthenticationScheme(OpenIdConnectDefaults.AuthenticationScheme)
                     .GetAsync()
                     .ConfigureAwait(false))
                 {
