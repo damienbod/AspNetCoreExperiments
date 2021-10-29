@@ -20,7 +20,7 @@
     <PackageReference Include="Microsoft.Identity.Web.MicrosoftGraphBeta" Version="1.16.0" />
     <PackageReference Include="Microsoft.Identity.Web" Version="1.16.0" />
     <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.16.0" />
-    <PackageReference Include="IdentityModel" Version="5.1.0" />
+    <PackageReference Include="IdentityModel" Version="5.2.0" />
     <PackageReference Include="IdentityModel.AspNetCore" Version="3.0.0" />
     <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders" Version="0.16.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
