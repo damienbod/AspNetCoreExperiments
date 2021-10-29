@@ -52,7 +52,7 @@ namespace BlazorBffAzureADWithApi.Server
                 options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             }).AddMicrosoftIdentityWebApp(Configuration, "AzureAd", OpenIdConnectDefaults.AuthenticationScheme)
                .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
-                 .AddMicrosoftGraph("https://graph.microsoft.com/beta",
+               .AddMicrosoftGraph("https://graph.microsoft.com/beta",
                     "User.ReadBasic.All user.read")
                .AddInMemoryTokenCaches();
 
