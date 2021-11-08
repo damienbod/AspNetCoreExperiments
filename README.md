@@ -24,6 +24,8 @@ Razor page application secured using Azure AD
 
 ## History 
 
+2021-11-08 Updated .NET 6 release
+
 2021-10-29 Updated packages
 
 2021-10-02 Updated packages
