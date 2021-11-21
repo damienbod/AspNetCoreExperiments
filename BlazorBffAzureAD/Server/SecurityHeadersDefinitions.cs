@@ -31,7 +31,7 @@ namespace BlazorHosted.Server
                     builder.AddImgSrc().Self().From("data:");
                     builder.AddFormAction().Self().From(idpHost);
                     builder.AddFontSrc().Self();
-                    builder.AddStyleSrc().Self().UnsafeInline();
+                    builder.AddStyleSrc().Self();
                     builder.AddBaseUri().Self();
                     builder.AddFrameAncestors().None();
 
