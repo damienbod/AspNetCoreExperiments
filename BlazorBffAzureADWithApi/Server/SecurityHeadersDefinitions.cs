@@ -24,21 +24,6 @@ namespace BlazorBffAzureADWithApi.Server
                 {
                     builder.SameOrigin();
                 })
-                .AddContentSecurityPolicy(builder =>
-                {
-                    builder.AddObjectSrc().None();
-                    builder.AddBlockAllMixedContent();
-                    builder.AddImgSrc().Self().From("data:");
-                    builder.AddFormAction().Self().From(idpHost);
-                    builder.AddFontSrc().Self();
-                    builder.AddStyleSrc().Self();
-                    builder.AddBaseUri().Self();
-                    builder.AddFrameAncestors().None();
-
-                    // due to Blazor
-                    builder.AddScriptSrc().Self().UnsafeInline().UnsafeEval();
-
-                })
                 .RemoveServerHeader()
                 .AddPermissionsPolicy(builder =>
                 {
@@ -60,8 +45,41 @@ namespace BlazorBffAzureADWithApi.Server
 
             if (!isDev)
             {
+                policy.AddContentSecurityPolicy(builder =>
+                {
+                    builder.AddObjectSrc().None();
+                    builder.AddBlockAllMixedContent();
+                    builder.AddImgSrc().Self().From("data:");
+                    builder.AddFormAction().Self().From(idpHost);
+                    builder.AddFontSrc().Self();
+                    builder.AddStyleSrc().Self();
+                    builder.AddBaseUri().Self();
+                    builder.AddFrameAncestors().None();
+
+                    // due to Blazor
+                    builder.AddScriptSrc().Self().UnsafeInline().UnsafeEval();
+
+                });
                 // maxage = one year in seconds
                 policy.AddStrictTransportSecurityMaxAgeIncludeSubDomains(maxAgeInSeconds: 60 * 60 * 24 * 365);
+            }
+            else
+            {
+                policy.AddContentSecurityPolicy(builder =>
+                {
+                    builder.AddObjectSrc().None();
+                    builder.AddBlockAllMixedContent();
+                    builder.AddImgSrc().Self().From("data:");
+                    builder.AddFormAction().Self().From(idpHost);
+                    builder.AddFontSrc().Self();
+                    builder.AddStyleSrc().Self();
+                    builder.AddBaseUri().Self();
+                    builder.AddFrameAncestors().None();
+
+                    // due to Blazor
+                    builder.AddScriptSrc().Self().UnsafeInline().UnsafeEval();
+
+                });
             }
 
             return policy;
