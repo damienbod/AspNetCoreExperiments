@@ -11,14 +11,9 @@ namespace BlazorBffAzureADWithApi.Server
                 .AddXssProtectionBlock()
                 .AddContentTypeOptionsNoSniff()
                 .AddReferrerPolicyStrictOriginWhenCrossOrigin()
-                .RemoveServerHeader()
                 .AddCrossOriginOpenerPolicy(builder =>
                 {
                     builder.SameOrigin();
-                })
-                .AddCrossOriginEmbedderPolicy(builder =>
-                {
-                    builder.RequireCorp();
                 })
                 .AddCrossOriginResourcePolicy(builder =>
                 {
@@ -46,20 +41,24 @@ namespace BlazorBffAzureADWithApi.Server
             if (!isDev)
             {
                 policy.AddContentSecurityPolicy(builder =>
-                {
-                    builder.AddObjectSrc().None();
-                    builder.AddBlockAllMixedContent();
-                    builder.AddImgSrc().Self().From("data:");
-                    builder.AddFormAction().Self().From(idpHost);
-                    builder.AddFontSrc().Self();
-                    builder.AddStyleSrc().Self();
-                    builder.AddBaseUri().Self();
-                    builder.AddFrameAncestors().None();
+                    {
+                        builder.AddObjectSrc().None();
+                        builder.AddBlockAllMixedContent();
+                        builder.AddImgSrc().Self().From("data:");
+                        builder.AddFormAction().Self().From(idpHost);
+                        builder.AddFontSrc().Self();
+                        builder.AddStyleSrc().Self();
+                        builder.AddBaseUri().Self();
+                        builder.AddFrameAncestors().None();
 
-                    // due to Blazor
-                    builder.AddScriptSrc().Self().UnsafeInline().UnsafeEval();
-
-                });
+                        // due to Blazor
+                        builder.AddScriptSrc().Self().UnsafeInline().UnsafeEval();
+                    })
+                    .AddCrossOriginEmbedderPolicy(builder => 
+                    {
+                        builder.RequireCorp();
+                    });
+                    
                 // maxage = one year in seconds
                 policy.AddStrictTransportSecurityMaxAgeIncludeSubDomains(maxAgeInSeconds: 60 * 60 * 24 * 365);
             }
@@ -72,13 +71,13 @@ namespace BlazorBffAzureADWithApi.Server
                     builder.AddImgSrc().Self().From("data:");
                     builder.AddFormAction().Self().From(idpHost);
                     builder.AddFontSrc().Self();
-                    builder.AddStyleSrc().Self();
+                    
                     builder.AddBaseUri().Self();
                     builder.AddFrameAncestors().None();
 
-                    // due to Blazor
-                    builder.AddScriptSrc().Self().UnsafeInline().UnsafeEval();
-
+                    // due to Blazor hot reload (DO NOT USE IN PROD)
+                    //builder.AddStyleSrc().Self();
+                    //builder.AddScriptSrc().Self().UnsafeInline().UnsafeEval();
                 });
             }
 
