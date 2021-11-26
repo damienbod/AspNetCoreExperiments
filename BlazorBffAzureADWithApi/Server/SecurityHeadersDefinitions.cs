@@ -38,9 +38,9 @@ namespace BlazorBffAzureADWithApi.Server
                     builder.AddUsb().None();
                 });
 
-            if (!isDev)
-            {
-                policy.AddContentSecurityPolicy(builder =>
+            //if (!isDev) // hot reload hack, CSP needs to be almost disabled for this to work
+            //{
+            policy.AddContentSecurityPolicy(builder =>
                     {
                         builder.AddObjectSrc().None();
                         builder.AddBlockAllMixedContent();
@@ -52,34 +52,37 @@ namespace BlazorBffAzureADWithApi.Server
                         builder.AddFrameAncestors().None();
 
                         // due to Blazor
-                        builder.AddScriptSrc().Self().UnsafeInline().UnsafeEval();
+                        builder.AddScriptSrc()
+                            .Self()
+                            .WithHash256("v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=")
+                            .UnsafeEval();
                     })
-                    .AddCrossOriginEmbedderPolicy(builder => 
+                    .AddCrossOriginEmbedderPolicy(builder => // missing from DEV due to hot reload
                     {
                         builder.RequireCorp();
                     });
                     
                 // maxage = one year in seconds
                 policy.AddStrictTransportSecurityMaxAgeIncludeSubDomains(maxAgeInSeconds: 60 * 60 * 24 * 365);
-            }
-            else
-            {
-                policy.AddContentSecurityPolicy(builder =>
-                {
-                    builder.AddObjectSrc().None();
-                    builder.AddBlockAllMixedContent();
-                    builder.AddImgSrc().Self().From("data:");
-                    builder.AddFormAction().Self().From(idpHost);
-                    builder.AddFontSrc().Self();
+            //}
+            //else // if you need to use hot reload
+            //{
+            //    policy.AddContentSecurityPolicy(builder =>
+            //    {
+            //        builder.AddObjectSrc().None();
+            //        builder.AddBlockAllMixedContent();
+            //        builder.AddImgSrc().Self().From("data:");
+            //        builder.AddFormAction().Self().From(idpHost);
+            //        builder.AddFontSrc().Self();
                     
-                    builder.AddBaseUri().Self();
-                    builder.AddFrameAncestors().None();
+            //        builder.AddBaseUri().Self();
+            //        builder.AddFrameAncestors().None();
 
-                    // due to Blazor hot reload (DO NOT USE IN PROD)
-                    //builder.AddStyleSrc().Self();
-                    //builder.AddScriptSrc().Self().UnsafeInline().UnsafeEval();
-                });
-            }
+            //        // due to Blazor hot reload (DO NOT USE IN PROD)
+            //        //builder.AddStyleSrc().Self();
+            //        //builder.AddScriptSrc().Self().UnsafeInline().UnsafeEval();
+            //    });
+            //}
 
             return policy;
         }
