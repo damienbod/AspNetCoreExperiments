@@ -35,7 +35,7 @@ namespace AspNetCoreRazor
                     builder.AddBaseUri().Self();
                     builder.AddScriptSrc().UnsafeInline().WithNonce();
                     builder.AddFrameAncestors().None();
-                    // builder.AddCustomDirective("require-trusted-types-for", "'script'");
+                    //builder.AddCustomDirective("require-trusted-types-for", "'script'");
                 })
                 .RemoveServerHeader()
                 .AddPermissionsPolicy(builder =>
