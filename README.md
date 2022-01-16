@@ -24,6 +24,8 @@ Razor page application secured using Azure AD
 
 ## History 
 
+2022-01-16 Updated nuget packages, code clean up
+
 2022-01-05 Updated nuget packages
 
 2021-11-21 Updated packages, improved Blazor CSP, removed inline style
