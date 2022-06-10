@@ -1,12 +1,8 @@
 ﻿using BlazorHosted.Shared.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Net.Http;
 using System.Net.Http.Json;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace BlazorHosted.Client.Services;
 
@@ -23,7 +19,7 @@ public class HostAuthenticationStateProvider : AuthenticationStateProvider
     private readonly ILogger<HostAuthenticationStateProvider> _logger;
 
     private DateTimeOffset _userLastCheck = DateTimeOffset.FromUnixTimeSeconds(0);
-    private ClaimsPrincipal _cachedUser = new ClaimsPrincipal(new ClaimsIdentity());
+    private ClaimsPrincipal _cachedUser = new(new ClaimsIdentity());
 
     public HostAuthenticationStateProvider(NavigationManager navigation, HttpClient client, ILogger<HostAuthenticationStateProvider> logger)
     {
@@ -34,14 +30,22 @@ public class HostAuthenticationStateProvider : AuthenticationStateProvider
 
     public override async Task<AuthenticationState> GetAuthenticationStateAsync()
     {
-        return new AuthenticationState(await GetUser(useCache: true).ConfigureAwait(false));
+        return new AuthenticationState(await GetUser(useCache: true));
     }
 
-    public void SignIn(string customReturnUrl = null)
+    public void SignIn(string? customReturnUrl = null)
     {
         var returnUrl = customReturnUrl != null ? _navigation.ToAbsoluteUri(customReturnUrl).ToString() : null;
         var encodedReturnUrl = Uri.EscapeDataString(returnUrl ?? _navigation.Uri);
         var logInUrl = _navigation.ToAbsoluteUri($"{LogInPath}?returnUrl={encodedReturnUrl}");
+        _navigation.NavigateTo(logInUrl.ToString(), true);
+    }
+
+    public void CaeStepUp(string claimsChallenge, string? customReturnUrl = null)
+    {
+        var returnUrl = customReturnUrl != null ? _navigation.ToAbsoluteUri(customReturnUrl).ToString() : null;
+        var encodedReturnUrl = Uri.EscapeDataString(returnUrl ?? _navigation.Uri);
+        var logInUrl = _navigation.ToAbsoluteUri($"{LogInPath}?claimsChallenge={claimsChallenge}&returnUrl={encodedReturnUrl}");
         _navigation.NavigateTo(logInUrl.ToString(), true);
     }
 
@@ -55,7 +59,7 @@ public class HostAuthenticationStateProvider : AuthenticationStateProvider
         }
 
         _logger.LogDebug("Fetching user");
-        _cachedUser = await FetchUser().ConfigureAwait(false);
+        _cachedUser = await FetchUser();
         _userLastCheck = now;
 
         return _cachedUser;
@@ -63,12 +67,12 @@ public class HostAuthenticationStateProvider : AuthenticationStateProvider
 
     private async Task<ClaimsPrincipal> FetchUser()
     {
-        UserInfo user = null;
+        UserInfo? user = null;
 
         try
         {
-            _logger.LogInformation(_client.BaseAddress.ToString());
-            user = await _client.GetFromJsonAsync<UserInfo>("api/User").ConfigureAwait(false);
+            _logger.LogInformation("{clientBaseAddress}", _client.BaseAddress?.ToString());
+            user = await _client.GetFromJsonAsync<UserInfo>("api/User");
         }
         catch (Exception exc)
         {
