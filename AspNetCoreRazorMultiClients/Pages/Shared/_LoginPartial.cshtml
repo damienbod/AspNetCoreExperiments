@@ -4,7 +4,7 @@
 @if (User.Identity?.IsAuthenticated == true)
 {
         <li class="nav-item">
-            <span class="navbar-text text-dark">Hello @User.Identity.Name!</span>
+            <span class="nav-link text-dark">Hello @User.Identity.Name!</span>
         </li>
         <li class="nav-item">
             <a class="nav-link text-dark" asp-controller="CustomAccount" asp-action="CustomSignOut">Sign out</a>
@@ -13,18 +13,16 @@
 else
 {
         <li>
-            <div class="main-menu">
-                <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownLangButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        sign-in
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownLangButton">
-                        <a class="dropdown-item" asp-controller="CustomAccount" asp-action="SignInT1" >t1</a>
-
-                        <a class="dropdown-item"  asp-controller="CustomAccount" asp-action="SignInT2">t2</a>
-                    </div>
-                </div>
+            <div class="dropdown">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                choose tenant
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" asp-controller="CustomAccount" asp-action="SignInT1" >t1</a></li>
+                <li><a class="dropdown-item"  asp-controller="CustomAccount" asp-action="SignInT2">t2</a></li>
+              </ul>
             </div>
         </li>
 }
 </ul>
+
