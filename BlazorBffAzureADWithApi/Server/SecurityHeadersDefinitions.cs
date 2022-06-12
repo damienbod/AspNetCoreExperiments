@@ -23,11 +23,15 @@ public static class SecurityHeadersDefinitions
                 builder.AddBaseUri().Self();
                 builder.AddFrameAncestors().None();
 
-                // due to Blazor
-                builder.AddScriptSrc()
-                    .Self()
-                    .WithHash256("v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=")
-                    .UnsafeEval();
+                if (!isDev)
+                {
+                    // due to Blazor (disable in dev for swagger UI)
+                    builder.AddScriptSrc()
+                        .Self()
+                        .WithHash256("v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=")
+                        .UnsafeEval();
+                }
+
 
                 // disable script and style CSP protection if using Blazor hot reload
                 // if using hot reload, DO NOT deploy with an insecure CSP
