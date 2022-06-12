@@ -1,57 +1,47 @@
-﻿using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.Graph;
+﻿using Microsoft.Graph;
 using Microsoft.Identity.Web;
-using System;
-using System.IO;
-using System.Threading.Tasks;
 
-namespace BlazorBffAzureADWithApi.Server.Services;
-
-public class MsGraphService
+namespace BlazorBffAzureADWithApi.Server.Services
 {
-    private readonly GraphServiceClient _graphServiceClient;
-
-    public MsGraphService(GraphServiceClient graphServiceClient)
+    public class MsGraphService
     {
-        _graphServiceClient = graphServiceClient;
-    }
+        private readonly GraphServiceClient _graphServiceClient;
 
-    public async Task<User> GetGraphApiUser()
-    {
-        return await _graphServiceClient
-            .Me
-            .Request()
-            .WithScopes("User.ReadBasic.All", "user.read")
-            .WithAuthenticationScheme(OpenIdConnectDefaults.AuthenticationScheme)
-            .GetAsync()
-            .ConfigureAwait(false);
-    }
-
-    public async Task<string> GetGraphApiProfilePhoto()
-    {
-        try
+        public MsGraphService(GraphServiceClient graphServiceClient)
         {
-            var photo = string.Empty;
-            // Get user photo
-            using (var photoStream = await _graphServiceClient
+            _graphServiceClient = graphServiceClient;
+        }
+
+        public async Task<User> GetGraphApiUser()
+        {
+            return await _graphServiceClient
                 .Me
-                .Photo
-                .Content
                 .Request()
                 .WithScopes("User.ReadBasic.All", "user.read")
-                .WithAuthenticationScheme(OpenIdConnectDefaults.AuthenticationScheme)
-                .GetAsync()
-                .ConfigureAwait(false))
-            {
-                byte[] photoByte = ((MemoryStream)photoStream).ToArray();
-                photo = Convert.ToBase64String(photoByte);
-            }
-
-            return photo;
+                .GetAsync();
         }
-        catch
+
+        public async Task<string> GetGraphApiProfilePhoto()
         {
-            return string.Empty;
+            try
+            {
+                var photo = string.Empty;
+                // Get user photo
+                using (var photoStream = await _graphServiceClient
+                    .Me.Photo.Content.Request()
+                    .WithScopes("User.ReadBasic.All", "user.read").GetAsync())
+                {
+                    byte[] photoByte = ((MemoryStream)photoStream).ToArray();
+                    photo = Convert.ToBase64String(photoByte);
+                }
+
+                return photo;
+            }
+            catch
+            {
+                return string.Empty;
+            }
         }
     }
 }
+
