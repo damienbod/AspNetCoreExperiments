@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-
-namespace BlazorBffAzureADWithApi.Server;
+﻿namespace BlazorBffAzureADWithApi.Server;
 
 public static class SecurityHeadersDefinitions
 {
@@ -11,9 +9,9 @@ public static class SecurityHeadersDefinitions
             .AddXssProtectionBlock()
             .AddContentTypeOptionsNoSniff()
             .AddReferrerPolicyStrictOriginWhenCrossOrigin()
-            .AddCrossOriginOpenerPolicy(builder => builder.SameOrigin())               
+            .AddCrossOriginOpenerPolicy(builder => builder.SameOrigin())
             .AddCrossOriginResourcePolicy(builder => builder.SameOrigin())
-            .AddCrossOriginEmbedderPolicy(builder =>  builder.RequireCorp())
+            .AddCrossOriginEmbedderPolicy(builder => builder.RequireCorp()) // remove for dev if using hot reload
             .AddContentSecurityPolicy(builder =>
             {
                 builder.AddObjectSrc().None();
@@ -25,14 +23,18 @@ public static class SecurityHeadersDefinitions
                 builder.AddBaseUri().Self();
                 builder.AddFrameAncestors().None();
 
-                // due to Blazor
-                builder.AddScriptSrc()
-                    .Self()
-                    .WithHash256("v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=")
-                    .UnsafeEval();
+                if (!isDev)
+                {
+                    // due to Blazor (disable in dev for swagger UI)
+                    builder.AddScriptSrc()
+                        .Self()
+                        .WithHash256("v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=")
+                        .UnsafeEval();
+                }
 
-                // due to Blazor hot reload requires you to disable script and style CSP protection
-                // if using hot reload, DO NOT deploy an with an insecure CSP
+
+                // disable script and style CSP protection if using Blazor hot reload
+                // if using hot reload, DO NOT deploy with an insecure CSP
             })
             .RemoveServerHeader()
             .AddPermissionsPolicy(builder =>
