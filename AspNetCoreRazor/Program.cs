@@ -14,7 +14,7 @@ var services = builder.Services;
 var configuration = builder.Configuration;
 var env = builder.Environment;
 
-builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAd"));
 
 services.AddAuthorization(options =>
