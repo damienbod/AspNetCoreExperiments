@@ -1,4 +1,5 @@
-﻿using Microsoft.Graph;
+﻿using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.Graph;
 using Microsoft.Identity.Web;
 
 namespace BlazorBffAzureADWithApi.Server.Services
@@ -18,6 +19,7 @@ namespace BlazorBffAzureADWithApi.Server.Services
                 .Me
                 .Request()
                 .WithScopes("User.ReadBasic.All", "user.read")
+                .WithAuthenticationScheme(OpenIdConnectDefaults.AuthenticationScheme)
                 .GetAsync();
         }
 
@@ -29,7 +31,9 @@ namespace BlazorBffAzureADWithApi.Server.Services
                 // Get user photo
                 using (var photoStream = await _graphServiceClient
                     .Me.Photo.Content.Request()
-                    .WithScopes("User.ReadBasic.All", "user.read").GetAsync())
+                    .WithScopes("User.ReadBasic.All", "user.read")
+                    .WithAuthenticationScheme(OpenIdConnectDefaults.AuthenticationScheme)
+                    .GetAsync())
                 {
                     byte[] photoByte = ((MemoryStream)photoStream).ToArray();
                     photo = Convert.ToBase64String(photoByte);
