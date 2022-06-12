@@ -56,7 +56,7 @@ public class CustomAccountController : Controller
     public async Task<IActionResult> CustomSignOut()
     {
         var aud = HttpContext.User.FindFirst("aud");
-        if (aud.Value == _configuration["AzureAdT1:ClientId"])
+        if (aud?.Value == _configuration["AzureAdT1:ClientId"])
         {
 
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
