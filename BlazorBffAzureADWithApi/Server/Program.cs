@@ -61,6 +61,7 @@ services.AddRazorPages().AddMvcOptions(options =>
     //var policy = new AuthorizationPolicyBuilder()
     //    .RequireAuthenticatedUser()
     //    .Build();
+    //    .AddAuthenticationSchemes(CookieAuthenticationDefaults.AuthenticationScheme, "MyJwtApiScheme", "OpenIdConnect") 
     //options.Filters.Add(new AuthorizeFilter(policy));
 }).AddMicrosoftIdentityUI();
 
