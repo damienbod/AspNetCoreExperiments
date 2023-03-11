@@ -24,6 +24,8 @@ Razor page application secured using Azure AD
 
 ## History 
 
+2023-03-11 Updated .NET 7, updates security headers
+
 2022-06-12 Updated nullables, implicit usings, bootstrap 5, packages
 
 2022-06-10 Updated nuget packages and BFF project

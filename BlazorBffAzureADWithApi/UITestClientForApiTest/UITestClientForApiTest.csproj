@@ -2,13 +2,13 @@
 
   <PropertyGroup>
     <ProjectGuid>BD4BD465-71CA-4729-B416-877E627206D8</ProjectGuid>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <UserSecretsId>1579346f-16df-4b37-a087-39df6bf2ffae</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Identity.Web" Version="1.25.0" />
-    <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.25.0" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="2.5.0" />
+    <PackageReference Include="Microsoft.Identity.Web.UI" Version="2.5.0" />
   </ItemGroup>
 
 </Project>
