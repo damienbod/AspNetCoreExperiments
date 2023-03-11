@@ -4,7 +4,10 @@ public static class SecurityHeadersDefinitions
 {
     public static HeaderPolicyCollection GetHeaderPolicyCollection(bool isDev, string? idpHost)
     {
-        if (idpHost == null) throw new ArgumentNullException(nameof(idpHost));
+        if(idpHost == null)
+        {
+            throw new ArgumentNullException(nameof(idpHost));
+        }
 
         var policy = new HeaderPolicyCollection()
             .AddFrameOptionsDeny()
