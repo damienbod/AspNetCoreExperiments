@@ -24,33 +24,21 @@ Razor page application secured using Azure AD
 
 ## History 
 
-2023-03-11 Updated .NET 7, updates security headers, Update Microsoft.Identity.web
-
-2022-06-12 Updated nullables, implicit usings, bootstrap 5, packages
-
-2022-06-10 Updated nuget packages and BFF project
-
-2022-02-11 Updated nuget packages and namespaces
-
-2022-01-16 Updated nuget packages, code clean up
-
-2022-01-05 Updated nuget packages
-
-2021-11-21 Updated packages, improved Blazor CSP, removed inline style
-
-2021-11-08 Updated .NET 6 release
-
-2021-10-29 Updated packages
-
-2021-10-02 Updated packages
-
-2021-09-17 Updated .NET 6 packages added mixed auth Blazor & API example
-
-2021-09-15 Updated .NET 6
-
-2021-08-13 Added security headers
-
-2021-08-09 Updated nuget packages
+- 2023-06-24 Updated packages, fixed CSP
+- 2023-03-11 Updated .NET 7, updates security headers, Update Microsoft.Identity.web
+- 2022-06-12 Updated nullables, implicit usings, bootstrap 5, packages
+- 2022-06-10 Updated nuget packages and BFF project
+- 2022-02-11 Updated nuget packages and namespaces
+- 2022-01-16 Updated nuget packages, code clean up
+- 2022-01-05 Updated nuget packages
+- 2021-11-21 Updated packages, improved Blazor CSP, removed inline style
+- 2021-11-08 Updated .NET 6 release
+- 2021-10-29 Updated packages
+- 2021-10-02 Updated packages
+- 2021-09-17 Updated .NET 6 packages added mixed auth Blazor & API example
+- 2021-09-15 Updated .NET 6
+- 2021-08-13 Added security headers
+- 2021-08-09 Updated nuget packages
 
 ## Links
 
