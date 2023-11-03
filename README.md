@@ -24,6 +24,7 @@ Razor page application secured using Azure AD
 
 ## History 
 
+- 2023-11-03 Updated packages, fixed security headers, removed XSS block
 - 2023-06-24 Updated packages, fixed CSP
 - 2023-03-11 Updated .NET 7, updates security headers, Update Microsoft.Identity.web
 - 2022-06-12 Updated nullables, implicit usings, bootstrap 5, packages
