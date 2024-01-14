@@ -16,7 +16,7 @@ var services = builder.Services;
 var configuration = builder.Configuration;
 var env = builder.Environment;
 
-// store the aad login
+// store the Microsoft Entra ID login
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie();
 

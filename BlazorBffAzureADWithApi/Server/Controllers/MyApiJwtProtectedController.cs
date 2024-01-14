@@ -16,6 +16,6 @@ public class MyApiJwtProtectedController : ControllerBase
     [SwaggerOperation(OperationId = "MyApiJwtProtected-Get", Summary = "Returns string with details")]
     public IActionResult Get()
     {
-        return Ok("yes my public api protected with Azure AD and JWT works");
+        return Ok("yes my public api protected with Microsoft Entra ID and JWT works");
     }
 }
