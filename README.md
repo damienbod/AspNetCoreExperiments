@@ -24,7 +24,7 @@ Razor page application secured using Azure AD
 
 ## History 
 
-- 2024-01-14 Updated .NET 8
+- 2024-01-14 Updated .NET 8, Blazor uses CSP nonce
 - 2023-11-03 Updated packages, fixed security headers, removed XSS block
 - 2023-06-24 Updated packages, fixed CSP
 - 2023-03-11 Updated .NET 7, updates security headers, Update Microsoft.Identity.web
