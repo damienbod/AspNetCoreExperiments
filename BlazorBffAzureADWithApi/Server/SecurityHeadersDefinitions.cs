@@ -4,16 +4,15 @@ public static class SecurityHeadersDefinitions
 {
     public static HeaderPolicyCollection GetHeaderPolicyCollection(bool isDev, string? idpHost)
     {
-        if(idpHost == null) throw new ArgumentNullException(nameof(idpHost));
+        ArgumentNullException.ThrowIfNull(idpHost);
 
         var policy = new HeaderPolicyCollection()
             .AddFrameOptionsDeny()
-            .AddXssProtectionBlock()
             .AddContentTypeOptionsNoSniff()
             .AddReferrerPolicyStrictOriginWhenCrossOrigin()
             .AddCrossOriginOpenerPolicy(builder => builder.SameOrigin())
             .AddCrossOriginResourcePolicy(builder => builder.SameOrigin())
-            .AddCrossOriginEmbedderPolicy(builder => builder.RequireCorp()) // remove for dev if using hot reload
+            .AddCrossOriginEmbedderPolicy(builder => builder.RequireCorp())
             .AddContentSecurityPolicy(builder =>
             {
                 builder.AddObjectSrc().None();
@@ -25,18 +24,11 @@ public static class SecurityHeadersDefinitions
                 builder.AddBaseUri().Self();
                 builder.AddFrameAncestors().None();
 
-                if (!isDev)
-                {
-                    // due to Blazor (disable in dev for swagger UI)
-                    builder.AddScriptSrc()
-                        .Self()
-                        .WithHash256("v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=")
-                        .UnsafeEval();
-                }
-
-
-                // disable script and style CSP protection if using Blazor hot reload
-                // if using hot reload, DO NOT deploy with an insecure CSP
+                // due to Blazor
+                builder.AddScriptSrc()
+                    // .Self() Add this if you want to use the visual studio debugging tools
+                    .WithNonce()
+                    .UnsafeEval();
             })
             .RemoveServerHeader()
             .AddPermissionsPolicy(builder =>
@@ -60,7 +52,7 @@ public static class SecurityHeadersDefinitions
         if (!isDev)
         {
             // maxage = one year in seconds
-            policy.AddStrictTransportSecurityMaxAgeIncludeSubDomains(maxAgeInSeconds: 60 * 60 * 24 * 365);
+            policy.AddStrictTransportSecurityMaxAgeIncludeSubDomains();
         }
 
         policy.ApplyDocumentHeadersToAllResponses();
