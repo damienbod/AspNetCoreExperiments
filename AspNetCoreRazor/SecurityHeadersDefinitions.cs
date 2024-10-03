@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-
-namespace AspNetCoreRazor;
+﻿namespace AspNetCoreRazor;
 
 public static class SecurityHeadersDefinitions
 {
@@ -20,38 +18,25 @@ public static class SecurityHeadersDefinitions
                 builder.AddImgSrc().Self().From("data:");
                 builder.AddFormAction().Self();
                 builder.AddFontSrc().Self();
-                builder.AddStyleSrc().Self(); // .UnsafeInline();
                 builder.AddBaseUri().Self();
-                builder.AddScriptSrc().UnsafeInline().WithNonce();
                 builder.AddFrameAncestors().None();
+
+                builder.AddStyleSrc().WithNonce().UnsafeInline();
+
+                builder.AddScriptSrc()
+                    .WithNonce()
+                    .WithHash256("j7OoGArf6XW6YY4cAyS3riSSvrJRqpSi1fOF9vQ5SrI=")
+                    .UnsafeInline();
                 //builder.AddCustomDirective("require-trusted-types-for", "'script'");
             })
             .RemoveServerHeader()
-            .AddPermissionsPolicy(builder =>
-            {
-                builder.AddAccelerometer().None();
-                builder.AddAutoplay().None();
-                builder.AddCamera().None();
-                builder.AddEncryptedMedia().None();
-                builder.AddFullscreen().All();
-                builder.AddGeolocation().None();
-                builder.AddGyroscope().None();
-                builder.AddMagnetometer().None();
-                builder.AddMicrophone().None();
-                builder.AddMidi().None();
-                builder.AddPayment().None();
-                builder.AddPictureInPicture().None();
-                builder.AddSyncXHR().None();
-                builder.AddUsb().None();
-            });
+            .AddPermissionsPolicyWithDefaultSecureDirectives();
 
         if (!isDev)
         {
             // maxage = one year in seconds
             policy.AddStrictTransportSecurityMaxAgeIncludeSubDomains(maxAgeInSeconds: 60 * 60 * 24 * 365);
         }
-
-        policy.ApplyDocumentHeadersToAllResponses();
 
         return policy;
     }
