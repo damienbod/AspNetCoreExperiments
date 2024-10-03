@@ -1,6 +1,6 @@
 # ASP.NET Core 
 
-[![.NET](https://github.com/damienbod/AspNetCore6Experiments/workflows/.NET/badge.svg)](https://github.com/damienbod/AspNetCore6Experiments/actions?query=workflow%3A.NET) [![CodeQL](https://github.com/damienbod/AspNetCore6Experiments/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/damienbod/AspNetCore6Experiments/actions/workflows/codeql-analysis.yml)
+[![.NET](https://github.com/damienbod/AspNetCore6Experiments/workflows/.NET/badge.svg)](https://github.com/damienbod/AspNetCore6Experiments/actions?query=workflow%3A.NET)
 
 ## Blazor .NET 8 BFF WASM & server(BlazorHosted.Server to start)
 
