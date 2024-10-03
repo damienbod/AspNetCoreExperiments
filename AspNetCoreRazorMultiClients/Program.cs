@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
+using NetEscapades.AspNetCore.SecurityHeaders.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,12 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
 var services = builder.Services;
 var configuration = builder.Configuration;
 var env = builder.Environment;
+
+services.AddSecurityHeaderPolicies()
+  .SetPolicySelector((PolicySelectorContext ctx) =>
+  {
+      return SecurityHeadersDefinitions.GetHeaderPolicyCollection(env.IsDevelopment());
+  });
 
 // store the Microsoft Entra ID login
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -71,8 +78,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseSecurityHeaders(SecurityHeadersDefinitions
-    .GetHeaderPolicyCollection(env.IsDevelopment()));
+app.UseSecurityHeaders();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
