@@ -1,9 +1,9 @@
 using AspNetCoreRazorMultiClients;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
-using Microsoft.AspNetCore.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,7 +48,7 @@ services.Configure<OpenIdConnectOptions>("t2", options =>
     {
         await existingOnTokenValidatedHandler(context);
 
-        if(context.Principal != null)
+        if (context.Principal != null)
         {
             await context.HttpContext.SignInAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme, context.Principal);

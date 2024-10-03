@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-
-namespace AspNetCoreRazor;
+﻿namespace AspNetCoreRazor;
 
 public static class SecurityHeadersDefinitions
 {

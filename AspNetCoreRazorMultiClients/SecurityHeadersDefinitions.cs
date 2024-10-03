@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-
-namespace AspNetCoreRazorMultiClients;
+﻿namespace AspNetCoreRazorMultiClients;
 
 public static class SecurityHeadersDefinitions
 {
