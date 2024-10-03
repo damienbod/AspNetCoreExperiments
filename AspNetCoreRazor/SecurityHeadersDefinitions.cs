@@ -18,10 +18,15 @@ public static class SecurityHeadersDefinitions
                 builder.AddImgSrc().Self().From("data:");
                 builder.AddFormAction().Self();
                 builder.AddFontSrc().Self();
-                builder.AddStyleSrc().Self(); // .UnsafeInline();
                 builder.AddBaseUri().Self();
-                builder.AddScriptSrc().UnsafeInline().WithNonce();
                 builder.AddFrameAncestors().None();
+
+                builder.AddStyleSrc().WithNonce().UnsafeInline();
+
+                builder.AddScriptSrc()
+                    .WithNonce()
+                    .WithHash256("j7OoGArf6XW6YY4cAyS3riSSvrJRqpSi1fOF9vQ5SrI=")
+                    .UnsafeInline();
                 //builder.AddCustomDirective("require-trusted-types-for", "'script'");
             })
             .RemoveServerHeader()
