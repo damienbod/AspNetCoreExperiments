@@ -9,7 +9,7 @@ public static class SecurityHeadersDefinitions
         // Avoid building a new HeaderPolicyCollection on every request for performance reasons.
         // Where possible, cache and reuse HeaderPolicyCollection instances.
         if (policy != null) return policy;
-   
+
         policy = new HeaderPolicyCollection()
             .AddFrameOptionsDeny()
             .AddContentTypeOptionsNoSniff()

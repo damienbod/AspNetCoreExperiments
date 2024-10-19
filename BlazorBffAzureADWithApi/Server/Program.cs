@@ -24,7 +24,7 @@ var env = builder.Environment;
 services.AddSecurityHeaderPolicies()
   .SetPolicySelector((PolicySelectorContext ctx) =>
   {
-      return SecurityHeadersDefinitions.GetHeaderPolicyCollection(env.IsDevelopment(), 
+      return SecurityHeadersDefinitions.GetHeaderPolicyCollection(env.IsDevelopment(),
           configuration["AzureAd:Instance"]);
   });
 

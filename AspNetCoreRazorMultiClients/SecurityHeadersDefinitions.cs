@@ -23,8 +23,8 @@ public static class SecurityHeadersDefinitions
                 builder.AddBlockAllMixedContent();
                 builder.AddImgSrc().Self().From("data:");
                 builder.AddFormAction().Self();
-                builder.AddFontSrc().Self();         
-                builder.AddBaseUri().Self();        
+                builder.AddFontSrc().Self();
+                builder.AddBaseUri().Self();
                 builder.AddFrameAncestors().None();
 
                 builder.AddStyleSrc().WithNonce().UnsafeInline();
