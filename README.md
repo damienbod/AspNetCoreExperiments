@@ -24,6 +24,7 @@ Razor page application secured using Microsoft Entra ID
 
 ## History 
 
+- 2024-10-19 Updated packages, improved security headers
 - 2024-10-03 Updated packages, security headers
 - 2024-01-14 Updated .NET 8, Blazor uses CSP nonce
 - 2023-11-03 Updated packages, fixed security headers, removed XSS block
