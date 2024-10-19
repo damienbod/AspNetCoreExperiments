@@ -14,7 +14,7 @@ Razor page application secured using Microsoft Entra ID
 
 [Improving application security in an ASP.NET Core Razor Page using HTTP headers](https://damienbod.com/2021/08/16/improving-application-security-in-asp-net-core-razor-pages-using-http-headers-part-1/)
 
-## ASP.NET Core 8 Razor mutliple tenants (AspNetCoreRazorMultiClients)
+## ASP.NET Core 8 Razor multiple tenants (AspNetCoreRazorMultiClients)
 
 [Sign-in using multiple clients or tenants in ASP.NET Core and Microsoft Entra ID](https://damienbod.com/2021/06/28/sign-in-using-multiple-clients-or-tenants-in-asp-net-core-and-azure-ad/)
 
