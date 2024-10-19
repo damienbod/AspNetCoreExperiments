@@ -15,12 +15,12 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
 
 var services = builder.Services;
 var configuration = builder.Configuration;
-var env = builder.Environment;
 
 services.AddSecurityHeaderPolicies()
   .SetPolicySelector((PolicySelectorContext ctx) =>
   {
-      return SecurityHeadersDefinitions.GetHeaderPolicyCollection(env.IsDevelopment());
+      return SecurityHeadersDefinitions.GetHeaderPolicyCollection(
+          builder.Environment.IsDevelopment());
   });
 
 // store the Microsoft Entra ID login
