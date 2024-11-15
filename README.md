@@ -2,28 +2,29 @@
 
 [![.NET](https://github.com/damienbod/AspNetCore6Experiments/workflows/.NET/badge.svg)](https://github.com/damienbod/AspNetCore6Experiments/actions?query=workflow%3A.NET)
 
-## Blazor .NET 8 BFF WASM & server(BlazorHosted.Server to start)
+## Blazor .NET 9 BFF WASM & server(BlazorHosted.Server to start)
 
 Using the Backend for frontend pattern to secure application using Microsoft Entra ID
 
 [Improving application security in Blazor using HTTP headers](https://damienbod.com/2021/08/23/improving-application-security-in-blazor-using-http-headers-part-2/)
 
-## ASP.NET Core 8 Razor (AspNetCoreRazor)
+## ASP.NET Core 9 Razor (AspNetCoreRazor)
 
 Razor page application secured using Microsoft Entra ID
 
 [Improving application security in an ASP.NET Core Razor Page using HTTP headers](https://damienbod.com/2021/08/16/improving-application-security-in-asp-net-core-razor-pages-using-http-headers-part-1/)
 
-## ASP.NET Core 8 Razor multiple tenants (AspNetCoreRazorMultiClients)
+## ASP.NET Core 9 Razor multiple tenants (AspNetCoreRazorMultiClients)
 
 [Sign-in using multiple clients or tenants in ASP.NET Core and Microsoft Entra ID](https://damienbod.com/2021/06/28/sign-in-using-multiple-clients-or-tenants-in-asp-net-core-and-azure-ad/)
 
-## Blazor .NET 8 BFF WASM & server(BlazorHosted.Server to start) & API secured with JWT
+## Blazor .NET 9 BFF WASM & server(BlazorHosted.Server to start) & API secured with JWT
 
 [Implement a secure API and a Blazor app in the same ASP.NET Core project with Microsoft Entra ID authentication](https://damienbod.com/2021/10/04/implement-a-secure-api-and-a-blazor-app-in-the-same-asp-net-core-project-with-azure-ad-authentication/)
 
 ## History 
 
+- 2024-11-15 .NET 9
 - 2024-10-19 Updated packages, improved security headers
 - 2024-10-03 Updated packages, security headers
 - 2024-01-14 Updated .NET 8, Blazor uses CSP nonce
