@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using Microsoft.IdentityModel.Logging;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using NetEscapades.AspNetCore.SecurityHeaders.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -73,40 +73,6 @@ services.AddRazorPages().AddMvcOptions(options =>
     //options.Filters.Add(new AuthorizeFilter(policy));
 }).AddMicrosoftIdentityUI();
 
-services.AddSwaggerGen(c =>
-{
-    c.EnableAnnotations();
-
-    // add JWT Authentication
-    var securityScheme = new OpenApiSecurityScheme
-    {
-        Name = "JWT Authentication",
-        Description = "Enter JWT Bearer token **_only_**",
-        In = ParameterLocation.Header,
-        Type = SecuritySchemeType.Http,
-        Scheme = "bearer", // must be lower case
-        BearerFormat = "JWT",
-        Reference = new OpenApiReference
-        {
-            Id = JwtBearerDefaults.AuthenticationScheme,
-            Type = ReferenceType.SecurityScheme
-        }
-    };
-    c.AddSecurityDefinition(securityScheme.Reference.Id, securityScheme);
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement
-            {
-                {securityScheme, Array.Empty<string>() }
-            });
-    c.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Title = "My API",
-        Version = "v1",
-        Description = "My API"
-    });
-
-});
-
-
 var app = builder.Build();
 
 IdentityModelEventSource.ShowPII = true;
@@ -122,12 +88,6 @@ else
 }
 
 app.UseSecurityHeaders();
-
-app.UseSwagger();
-app.UseSwaggerUI(c =>
-{
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyApi v1");
-});
 
 app.UseHttpsRedirection();
 app.UseBlazorFrameworkFiles();
