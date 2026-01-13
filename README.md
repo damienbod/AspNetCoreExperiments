@@ -24,6 +24,7 @@ Razor page application secured using Microsoft Entra ID
 
 ## History 
 
+- 2026-01-13 .NET 10
 - 2025-05-07 Updated packages,
 - 2024-11-15 .NET 9
 - 2024-10-19 Updated packages, improved security headers
