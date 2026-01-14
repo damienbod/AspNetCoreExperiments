@@ -61,7 +61,7 @@ public class CustomAccountController : Controller
             await HttpContext.SignOutAsync("cookiet1");
             var authSignOut = new AuthenticationProperties
             {
-                RedirectUri = "https://localhost:44348/SignoutCallbackOidc"
+                RedirectUri = "https://localhost:5001/SignoutCallbackOidc"
             };
             return SignOut(authSignOut, "t1");
         }
@@ -71,7 +71,7 @@ public class CustomAccountController : Controller
             await HttpContext.SignOutAsync("cookiet2");
             var authSignOut = new AuthenticationProperties
             {
-                RedirectUri = "https://localhost:44348/SignoutCallbackOidc"
+                RedirectUri = "https://localhost:5001/SignoutCallbackOidc"
             };
             return SignOut(authSignOut, "t2");
         }
